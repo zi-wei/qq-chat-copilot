@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.ProgressIndicator?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox alignment="TOP_LEFT" spacing="14.0" prefWidth="480.0"
+      xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.example.qqcopilot.ui.SettingsController">
+    <padding>
+        <Insets bottom="24.0" left="24.0" right="24.0" top="24.0" />
+    </padding>
+    <children>
+        <!-- 标题 -->
+        <Label text="AI 设置" styleClass="title-3" />
+        
+        <Separator />
+        
+        <!-- API 地址 -->
+        <VBox spacing="4.0">
+            <Label text="API 地址" styleClass="text-bold" />
+            <TextField fx:id="apiUrlField" promptText="例如: https://api.openai.com/v1/chat/completions" />
+            <Label text="OpenAI 兼容格式的 API 地址" styleClass="text-muted, text-small" />
+        </VBox>
+        
+        <!-- API Key -->
+        <VBox spacing="4.0">
+            <Label text="API Key" styleClass="text-bold" />
+            <HBox spacing="8.0" alignment="CENTER_LEFT">
+                <PasswordField fx:id="apiKeyField" promptText="输入你的 API Key" HBox.hgrow="ALWAYS" />
+                <Button fx:id="toggleKeyButton" text="显示" onAction="#onToggleKeyVisibility" styleClass="flat" />
+            </HBox>
+        </VBox>
+        
+        <!-- 拉取模型按钮 -->
+        <HBox spacing="12.0" alignment="CENTER_LEFT">
+            <Button fx:id="fetchModelsButton" text="拉取模型列表" onAction="#onFetchModels" styleClass="success" />
+            <ProgressIndicator fx:id="fetchingIndicator" prefHeight="20.0" prefWidth="20.0" visible="false" />
+            <Label fx:id="statusLabel" text="" styleClass="text-small" />
+        </HBox>
+        
+        <!-- 模型选择 -->
+        <VBox spacing="4.0">
+            <Label text="选择模型" styleClass="text-bold" />
+            <ComboBox fx:id="modelComboBox" promptText="请先拉取模型列表..." maxWidth="Infinity" editable="true" />
+            <Label text="也可以手动输入模型名称" styleClass="text-muted, text-small" />
+        </VBox>
+        
+        <Separator />
+        
+        <!-- AI 人设提示词 -->
+        <VBox spacing="4.0">
+            <Label text="AI 人设提示词 (System Prompt)" styleClass="text-bold" />
+            <TextArea fx:id="systemPromptArea" prefHeight="80.0" wrapText="true"
+                      promptText="例如：你是一个高情商聊天辅助助手，说话幽默风趣..." />
+            <Label text="设置 AI 的角色人设，留空则使用默认提示词" styleClass="text-muted, text-small" />
+        </VBox>
+        
+        <Separator />
+        
+        <!-- 高级设置 -->
+        <VBox spacing="4.0">
+            <Label text="请求间隔 (毫秒)" styleClass="text-bold" />
+            <TextField fx:id="rateLimitField" promptText="2000" prefWidth="120.0" />
+            <Label text="防止请求过快被限流，默认 2000ms" styleClass="text-muted, text-small" />
+        </VBox>
+        
+        <Separator />
+        
+        <!-- 按钮区 -->
+        <HBox spacing="12.0" alignment="CENTER_RIGHT">
+            <Button fx:id="testButton" text="测试连接" onAction="#onTestConnection" />
+            <Button fx:id="saveButton" text="保存" onAction="#onSave" styleClass="accent" />
+            <Button fx:id="cancelButton" text="取消" onAction="#onCancel" />
+        </HBox>
+    </children>
+</VBox>

@@ -1,0 +1,10 @@
+{
+  "component": "simbot.onebot11",
+  "authorization": {
+    "botUniqueId": "你的QQ号",
+    "apiServerHost": "http://localhost:6199",
+    "eventServerHost": "ws://localhost:3001",
+    "apiAccessToken": "你的HTTP API Token",
+    "eventAccessToken": "你的WebSocket Token"
+  }
+}

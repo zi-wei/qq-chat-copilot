@@ -1,0 +1,21 @@
+server:
+  port: 8080
+
+simbot:
+  # Simbot 4.x Spring Boot 配置
+  application:
+    # 保持应用活跃 (因为没有 spring-web)
+    application-launch-mode: THREAD
+  bots:
+    # Bot 配置文件位置
+    configuration-json-resources:
+      - "classpath:simbot-bots/*.bot.json"
+    # 自动启动 bot
+    auto-start-bots: true
+
+ai:
+  api-key: "pwd"
+  # API 地址，如果是 OpenAI 官方则不需要改，如果是 DeepSeek 或其他中转，请修改
+  api-url: "http://127.0.0.1:7861/v1" 
+  model: "gemini-2.5-pro"
+  rate-limit-ms: 2000
